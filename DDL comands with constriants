@@ -1,0 +1,28 @@
+mysql> create database hospital;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use hospital;
+Database changed
+mysql> create table patient(Name char(25) NOT NULL UNIQUE, patid int(10), age int(3) check (age<=18), primary key(patid));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc patient;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| Name  | char(25) | NO   | UNI | NULL    |       |
+| patid | int(10)  | NO   | PRI | 0       |       |
+| age   | int(3)   | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+mysql>  create table patient(Name char(25) NOT NULL UNIQUE, patid int(10), age int(3) check (age<=18), foreign key(patid) references pati(patid));
+Query OK, 0 rows affected (0.01 sec)
+mysql> desc patient;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| Name  | char(25) | NO   | PRI | NULL    |       |
+| patid | int(10)  | YES  | MUL | NULL    |       |
+| age   | int(3)   | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
